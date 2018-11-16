@@ -39,7 +39,6 @@ export function initDisplay() {
       display_map[i].push(0);
     }
   }
-  console.log("MERE ", display_map);
   return {
     type: INIT_DISPLAY,
     payload: display_map

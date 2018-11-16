@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { clickAction } from "../actions/index";
 // import Rx from "rx";
-const images = "./src/static/images/";
+const images = "./src/static/images";
 
 let map_images = {
   0: "number0",
@@ -29,15 +29,18 @@ class Cell extends Component {
     this.props.clickAction(this.props.row, this.props.column);
   }
   render() {
-    if (this.props.display) {
+    console.log("HERE", this.props);
+    if (this.props.image !== undefined) {
+      let top = 50 + this.props.row * 25 + "px";
+      let left = 200 + 25 * this.props.column + "px";
       var divStyle = {
-        backgroundImage: `url(${images}/${this.props.images}.png)`,
-        top: this.props.row * 25 + "px",
-        left: this.props.column * 25 + "px"
+        backgroundImage: `url(${images}/${map_images[this.props.image]}.png)`,
+        top,
+        left
       };
-    } else {
-      var divStyle = undefined;
     }
+
+    console.log(divStyle);
     return (
       <div
         className="cell"

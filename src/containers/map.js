@@ -12,30 +12,40 @@ class Map extends Component {
     this.props.initDisplay();
   }
   renderMap() {
-    console.log("PROPS ", this.props.display);
-    if (!this.props.display) {
-      return <div />;
-    } else {
-      let map = [];
-      for (let i = 0; i < 3; i++) {
-        map.push([]);
-        for (let j = 0; j < 3; j++) {
-          let image = this.props.display[i][j];
-          map[i].push(
-            <Cell row={i} column={j} image={image} key={Math.random()} />
-          );
-        }
-      }
+    if (this.props.displayMap.length) {
+      let row = -1;
+      let column = -1;
+      let map = this.props.displayMap.map((item, index) => {
+        row++;
+        column = -1;
+        return (
+          <div key={index}>
+            {item.map((subitem, i) => {
+              column++;
+              return (
+                <ul key={Math.random()} className="map_ul">
+                  <Cell
+                    key={Math.random()}
+                    row={row}
+                    column={column}
+                    image={subitem.value}
+                  />
+                </ul>
+              );
+            })}
+          </div>
+        );
+      });
+      return map;
     }
-    return map;
   }
   render() {
     return <div>{this.renderMap()}</div>;
   }
 }
 
-function mapStateToProps({ display }) {
-  return { display };
+function mapStateToProps({ displayMap }) {
+  return { displayMap };
 }
 
 function mapDispatchToProps(dispatch) {
