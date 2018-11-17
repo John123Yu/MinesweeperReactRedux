@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { initMap, initDisplay, initClicked } from "../actions/index";
 import Cell from "./cell";
+import ScoreBoard from "./score_board";
 
 class Map extends Component {
   constructor(props) {
@@ -43,7 +44,15 @@ class Map extends Component {
     }
   }
   render() {
-    return <div>{this.renderMap()}</div>;
+    return (
+      <div>
+        <ScoreBoard
+          displayMap={this.props.displayMap}
+          clickedMap={this.props.clickedMap}
+        />
+        {this.renderMap()}
+      </div>
+    );
   }
 }
 

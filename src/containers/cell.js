@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { clickAction, changeClicked } from "../actions/index";
+import { clickAction, changeClicked, rightClick } from "../actions/index";
 import classNames from "classnames";
 // import Rx from "rx";
 const images = "./src/static/images";
@@ -27,6 +27,10 @@ class Cell extends Component {
     this.props.clickAction(this.props.row, this.props.column);
     this.props.changeClicked(this.props.row, this.props.column);
   }
+  onContextMenu(e) {
+    e.preventDefault();
+    this.props.rightClick(this.props.row, this.props.column);
+  }
   render() {
     let clicked_class = classNames({
       cell: true,
@@ -47,6 +51,7 @@ class Cell extends Component {
         className={clicked_class}
         style={divStyle}
         onClick={this.handleClick.bind(this)}
+        onContextMenu={this.onContextMenu.bind(this)}
       />
     );
   }
@@ -57,7 +62,10 @@ function mapStateToProps({}) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ clickAction, changeClicked }, dispatch);
+  return bindActionCreators(
+    { clickAction, changeClicked, rightClick },
+    dispatch
+  );
 }
 
 export default connect(
