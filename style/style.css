@@ -24,8 +24,10 @@
 }
 .title {
   left: 200px;
-  top: 20px;
+  top: 35px;
   position: relative;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 .score_board {
   top: 65px;
@@ -50,4 +52,10 @@
 .score_info p {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+.game_completed {
+  position: fixed;
+  top: 250px;
+  left: 550px;
+  font-size: 3em;
 }

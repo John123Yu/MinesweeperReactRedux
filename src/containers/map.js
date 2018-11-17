@@ -14,7 +14,6 @@ class Map extends Component {
     this.props.initClicked();
   }
   renderMap() {
-    console.log(this.props.displayMap);
     if (this.props.displayMap.length && this.props.clickedMap.length) {
       let row = -1;
       let column = -1;
@@ -44,6 +43,17 @@ class Map extends Component {
     }
   }
   render() {
+    if (this.props.game_completed) {
+      return (
+        <div>
+          <ScoreBoard
+            displayMap={this.props.displayMap}
+            clickedMap={this.props.clickedMap}
+          />
+          <h1 className="game_completed">Game Completed</h1>
+        </div>
+      );
+    }
     return (
       <div>
         <ScoreBoard
@@ -56,8 +66,8 @@ class Map extends Component {
   }
 }
 
-function mapStateToProps({ displayMap, clickedMap }) {
-  return { displayMap, clickedMap };
+function mapStateToProps({ displayMap, clickedMap, game_completed }) {
+  return { displayMap, clickedMap, game_completed };
 }
 
 function mapDispatchToProps(dispatch) {
