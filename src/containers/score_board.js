@@ -7,6 +7,7 @@ import { moveBack, moveBackClick } from "../actions/index";
 class ScoreBoard extends Component {
   constructor(props) {
     super(props);
+    this.undo = 0;
   }
   handleClick() {
     this.props.clickAction(this.props.row, this.props.column);
@@ -15,6 +16,7 @@ class ScoreBoard extends Component {
   handleUndo() {
     this.props.moveBack();
     this.props.moveBackClick();
+    this.undo++;
   }
   render() {
     let score = 0;
@@ -30,6 +32,7 @@ class ScoreBoard extends Component {
         });
       });
     }
+    score = score - this.undo * 10;
     return (
       <div>
         <p className="score_title">Score</p>
@@ -39,6 +42,8 @@ class ScoreBoard extends Component {
         <div className="score_info">
           <p>*One point for tile clicked</p>
           <p>*Minus 10 points for bomb clicked</p>
+          <p>*Minus 10 points for every undo</p>
+          <p>Game continues despite bomb clicks</p>
           <button
             className="btn btn-danger"
             onClick={this.handleUndo.bind(this)}

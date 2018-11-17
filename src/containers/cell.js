@@ -50,7 +50,7 @@ class Cell extends Component {
     });
     if (this.props.image !== undefined) {
       let top = 50 + this.props.row * 25 + "px";
-      let left = 200 + 25 * this.props.column + "px";
+      let left = 500 + 25 * this.props.column + "px";
       var divStyle = {
         backgroundImage: `url(${images}/${map_images[this.props.image]}.png)`,
         top,

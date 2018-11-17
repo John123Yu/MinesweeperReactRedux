@@ -17,8 +17,8 @@ let clicked_map = [];
 let recursed_map = [];
 let display_map_list = new LinkedList();
 let clicked_list = new LinkedList();
-let map_size = 2;
-let bomb_count = 1;
+let map_size = 16;
+let bomb_count = 40;
 
 export function initMap() {
   for (let i = 0; i < map_size; i++) {
