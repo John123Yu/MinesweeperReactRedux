@@ -37,7 +37,7 @@ class ScoreBoard extends Component {
       <div>
         <p className="score_title">Score</p>
         <div className="score_board">
-          <p>{score}</p>
+          <p>{score}/206</p>
         </div>
         <div className="score_info">
           <p>*One point for tile clicked</p>

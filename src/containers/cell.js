@@ -30,7 +30,7 @@ class Cell extends Component {
   }
   handleClick() {
     this.props.clickAction(this.props.row, this.props.column);
-    this.props.changeClicked(this.props.row, this.props.column);
+    this.props.changeClicked(this.props.row, this.props.column, true);
     setImmediate(() => {
       this.props.gameEnd();
     });

@@ -10,7 +10,7 @@ export const RIGHT_CLICK = "RIGHT_CLICK";
 export const END_GAME = "END_GAME";
 export const MOVE_BACK = "MOVE_BACK";
 export const MOVE_BACK_CLICK = "MOVE_BACK_CLICK";
-
+//do the same with the recurse map;
 let actual_map = [];
 let display_map = [];
 let clicked_map = [];
@@ -109,6 +109,7 @@ export function moveBack() {
   };
 }
 export function moveBackClick() {
+  init_recursed();
   clicked_list.delete();
   let { value } = clicked_list.returnLast();
   clicked_map = clone_array(value.slice());
@@ -120,12 +121,11 @@ export function moveBackClick() {
   };
 }
 export function initClicked() {
+  init_recursed();
   for (let i = 0; i < map_size; i++) {
     clicked_map.push([]);
-    recursed_map.push([]);
     for (let j = 0; j < map_size; j++) {
       clicked_map[i].push(false);
-      recursed_map[i].push(false);
     }
   }
   clicked_list.add(clone_array(clicked_map.slice()));
@@ -135,18 +135,11 @@ export function initClicked() {
     payload: clicked_map
   };
 }
-export function changeClicked(row, column) {
+export function changeClicked(row, column, save = false) {
   clicked_map = clicked_map.slice(0);
-  //   if (clicked_map[row][column] === undefined) {
-  //     console.log("Clicked map", clicked_map);
-  //     return {
-  //       type: CHANGE_CLICKED,
-  //       payload: clicked_map
-  //     };
-  //   }
   if (clicked_map[row][column] !== undefined) {
     if (display_map[row][column] !== 9) clicked_map[row][column] = true;
-    clicked_list.add(clone_array(clicked_map.slice()));
+    if (save) clicked_list.add(clone_array(clicked_map.slice()));
   }
   console.log("2", clicked_list);
   return {
@@ -245,4 +238,14 @@ let clone_array = old_array => {
     }
   }
   return new_array;
+};
+
+let init_recursed = () => {
+  recursed_map = [];
+  for (let i = 0; i < map_size; i++) {
+    recursed_map.push([]);
+    for (let j = 0; j < map_size; j++) {
+      recursed_map[i].push(false);
+    }
+  }
 };
