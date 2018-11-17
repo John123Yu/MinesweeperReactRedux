@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {} from "../actions/index";
+import { moveBack, moveBackClick } from "../actions/index";
 // import classNames from "classnames";
 
 class ScoreBoard extends Component {
@@ -11,6 +11,10 @@ class ScoreBoard extends Component {
   handleClick() {
     this.props.clickAction(this.props.row, this.props.column);
     this.props.changeClicked(this.props.row, this.props.column);
+  }
+  handleUndo() {
+    this.props.moveBack();
+    this.props.moveBackClick();
   }
   render() {
     let score = 0;
@@ -35,6 +39,12 @@ class ScoreBoard extends Component {
         <div className="score_info">
           <p>*One point for tile clicked</p>
           <p>*Minus 10 points for bomb clicked</p>
+          <button
+            className="btn btn-danger"
+            onClick={this.handleUndo.bind(this)}
+          >
+            Undo
+          </button>
         </div>
       </div>
     );
@@ -46,7 +56,7 @@ function mapStateToProps({}) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ moveBack, moveBackClick }, dispatch);
 }
 
 export default connect(

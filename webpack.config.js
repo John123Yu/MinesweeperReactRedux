@@ -11,18 +11,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: "babel",
         query: {
-          presets: ["react", "es2015", "stage-1"],
-          plugins: [
-            "react-html-attrs",
-            "transform-decorators-legacy",
-            "transform-class-properties"
-          ]
+          presets: ["react", "es2015", "stage-1"]
         }
-      },
-      {
-        test: /\.png$/,
-        loader: "url-loader",
-        query: { mimetype: "image/png" }
       }
     ]
   },

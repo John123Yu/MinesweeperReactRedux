@@ -1,4 +1,9 @@
-import { INIT_DISPLAY, CLICK_ACTION, RIGHT_CLICK } from "../actions/index";
+import {
+  INIT_DISPLAY,
+  CLICK_ACTION,
+  RIGHT_CLICK,
+  MOVE_BACK
+} from "../actions/index";
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -7,6 +12,8 @@ export default function(state = [], action) {
     case CLICK_ACTION:
       return action.payload;
     case RIGHT_CLICK:
+      return action.payload;
+    case MOVE_BACK:
       return action.payload;
   }
   return state;
