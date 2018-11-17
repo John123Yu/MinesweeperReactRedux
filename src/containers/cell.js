@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { clickAction } from "../actions/index";
+import { clickAction, changeClicked } from "../actions/index";
+import classNames from "classnames";
 // import Rx from "rx";
 const images = "./src/static/images";
 
@@ -23,13 +24,15 @@ class Cell extends Component {
     super(props);
   }
   handleClick() {
-    console.log("HEREE");
-    console.log(this.props.row);
-    console.log(this.props.column);
     this.props.clickAction(this.props.row, this.props.column);
+    this.props.changeClicked(this.props.row, this.props.column);
   }
   render() {
-    console.log("HERE", this.props);
+    let clicked_class = classNames({
+      cell: true,
+      clicked: this.props.clicked,
+      not_clicked: !this.props.clicked
+    });
     if (this.props.image !== undefined) {
       let top = 50 + this.props.row * 25 + "px";
       let left = 200 + 25 * this.props.column + "px";
@@ -39,11 +42,9 @@ class Cell extends Component {
         left
       };
     }
-
-    console.log(divStyle);
     return (
       <div
-        className="cell"
+        className={clicked_class}
         style={divStyle}
         onClick={this.handleClick.bind(this)}
       />
@@ -56,7 +57,7 @@ function mapStateToProps({}) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ clickAction }, dispatch);
+  return bindActionCreators({ clickAction, changeClicked }, dispatch);
 }
 
 export default connect(

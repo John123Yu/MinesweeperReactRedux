@@ -3,12 +3,18 @@
   width: 25px;
   height: 25px;
   display: inline-block;
+  margin: 0px;
+  position: relative;
+  background-size: cover;
+}
+.clicked {
+  border: 2px solid grey;
+}
+.not_clicked {
   border-top: 2px solid white;
   border-left: 2px solid white;
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;
-  margin: 0px;
-  position: relative;
 }
 .map_ul {
   margin: 0px;

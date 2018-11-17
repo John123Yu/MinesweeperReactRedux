@@ -1,11 +1,14 @@
 export const INIT_MAP = "INIT_MAP";
 export const INIT_DISPLAY = "INIT_DISPLAY";
 export const CLICK_ACTION = "CLICK_ACTION";
+export const INIT_CLICKED = "INIT_CLICKED";
+export const CHANGE_CLICKED = "CHANGE_CLICKED";
 
 let outer_array = [];
 let display_map = [];
-let map_size = 3;
-let bomb_count = 1;
+let clicked_map = [];
+let map_size = 16;
+let bomb_count = 40;
 
 export function initMap() {
   for (let i = 0; i < map_size; i++) {
@@ -46,10 +49,32 @@ export function initDisplay() {
 }
 
 export function clickAction(row, column) {
+  display_map = display_map.slice();
   display_map[row][column] = outer_array[row][column];
   return {
     type: CLICK_ACTION,
     payload: display_map
+  };
+}
+
+export function initClicked() {
+  for (let i = 0; i < map_size; i++) {
+    clicked_map.push([]);
+    for (let j = 0; j < map_size; j++) {
+      clicked_map[i].push(false);
+    }
+  }
+  return {
+    type: INIT_CLICKED,
+    payload: clicked_map
+  };
+}
+export function changeClicked(row, column) {
+  clicked_map = clicked_map.slice();
+  clicked_map[row][column] = true;
+  return {
+    type: CHANGE_CLICKED,
+    payload: clicked_map
   };
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { initMap, initDisplay } from "../actions/index";
+import { initMap, initDisplay, initClicked } from "../actions/index";
 import Cell from "./cell";
 
 class Map extends Component {
@@ -10,9 +10,11 @@ class Map extends Component {
 
     this.props.initMap();
     this.props.initDisplay();
+    this.props.initClicked();
   }
   renderMap() {
-    if (this.props.displayMap.length) {
+    console.log(this.props.displayMap);
+    if (this.props.displayMap.length && this.props.clickedMap.length) {
       let row = -1;
       let column = -1;
       let map = this.props.displayMap.map((item, index) => {
@@ -28,7 +30,8 @@ class Map extends Component {
                     key={Math.random()}
                     row={row}
                     column={column}
-                    image={subitem.value}
+                    image={subitem}
+                    clicked={this.props.clickedMap[row][column]}
                   />
                 </ul>
               );
@@ -44,12 +47,12 @@ class Map extends Component {
   }
 }
 
-function mapStateToProps({ displayMap }) {
-  return { displayMap };
+function mapStateToProps({ displayMap, clickedMap }) {
+  return { displayMap, clickedMap };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ initDisplay, initMap }, dispatch);
+  return bindActionCreators({ initDisplay, initMap, initClicked }, dispatch);
 }
 
 export default connect(
