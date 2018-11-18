@@ -1,7 +1,8 @@
 import {
   CHANGE_CLICKED,
   INIT_CLICKED,
-  MOVE_BACK_CLICK
+  MOVE_BACK_CLICK,
+  MOVE_FORWARD_CLICK
 } from "../actions/index";
 
 export default function(state = [], action) {
@@ -11,6 +12,8 @@ export default function(state = [], action) {
     case CHANGE_CLICKED:
       return action.payload;
     case MOVE_BACK_CLICK:
+      return action.payload;
+    case MOVE_FORWARD_CLICK:
       return action.payload;
   }
   return state;
