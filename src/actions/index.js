@@ -1,6 +1,3 @@
-// import { LinkedListD } from "../static/doublyLinkedList";
-// import { LinkedList } from "../static/singlyLinkedList";
-
 export const INIT_MAP = "INIT_MAP";
 export const INIT_DISPLAY = "INIT_DISPLAY";
 export const CLICK_ACTION = "CLICK_ACTION";
@@ -15,6 +12,8 @@ export const MOVE_FORWARD_CLICK = "MOVE_FORWARD_CLICK";
 
 // add undo features to flags
 // add replay whole game
+
+//Global Variables --- Bad?
 let actual_map = [];
 let display_map = [];
 let clicked_map = [];
@@ -144,7 +143,7 @@ export function moveForwardClick() {
     clicked_map = clone_nested_array(clicked_list[clicked_list_i]);
   }
   return {
-    type: MOVE_FORWARD,
+    type: MOVE_FORWARD_CLICK,
     payload: display_map
   };
 }
