@@ -11,7 +11,7 @@
     "test:watch": "npm run test -- --watch",
     "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d ./"
+    "deploy": "gh-pages -d /"
   },
   "author": "",
   "license": "ISC",
