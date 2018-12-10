@@ -10,7 +10,6 @@ export const MOVE_BACK_CLICK = "MOVE_BACK_CLICK";
 export const MOVE_FORWARD = "MOVE_FORWARD";
 export const MOVE_FORWARD_CLICK = "MOVE_FORWARD_CLICK";
 
-// add undo features to flags
 // add replay whole game
 
 //Global Variables --- Bad?

@@ -11,7 +11,7 @@
     "test:watch": "npm run test -- --watch",
     "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d ./"
+    "deploy": "aws s3 sync build/ s3://minesweeper-react-redux"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "babel-preset-react": "^6.1.18",
     "gh-pages": "^2.0.1",
     "webpack": "^1.12.9",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
@@ -29,7 +30,7 @@
     "classnames": "^2.2.6",
     "lodash": "^3.10.1",
     "react": "16.3.2",
-    "react-dom": "16.3.2",git 
+    "react-dom": "16.3.2",
     "react-redux": "5.0.7",
     "redux": "4.0.0",
     "redux-undo": "^1.0.0-beta9-9-7"
